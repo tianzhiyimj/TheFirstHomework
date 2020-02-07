@@ -20,32 +20,30 @@ def get_key(v):
 
 while True:
     inputs.append(input().split()[-1])         # 输入存到数据流
-    print(inputs)
-
     # 状态机
     if not state:
         if inputs[-1] == '整数':
-            state = '定义业务'
+            state = '定义'
         elif inputs[-1] in var:
-            state = '运算业务'
+            state = '运算'
         elif inputs[-1] == '看看':
-            state = '看看业务'
+            state = '看看'
         elif inputs[-1] == '如果':
-            state = '正则业务'
+            state = '正则'
 
-    if state == '定义业务':
-        print('到达定义业务')
+    if state == '定义':
+        print('到达定义')
         get()                                   # 变量
         var.append(inputs[-1])
         get()
-        if inputs[-1] == '等於':                # 赋值
+        if inputs[-1] == '等于':                # 赋值
             get()
             data.append(no[inputs[-1]])
         state = None                            # 业务结束
         continue
 
-    if state == '运算业务':
-        print('到达定义业务')
+    if state == '运算':
+        print('到达运算')
         get()
         if inputs[-1] == '减少':                # 负
             get()
@@ -56,8 +54,8 @@ while True:
         state = None
         continue
 
-    if state == '看看业务':
-        print('到达看看业务')
+    if state == '看看':
+        print('到达看看')
         get()
         if inputs[-1] in var:                   # 找值
             print(data[-1])
